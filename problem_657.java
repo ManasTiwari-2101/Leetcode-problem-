@@ -1,6 +1,9 @@
 class Solution {
     public boolean judgeCircle(String moves) {
         int v=0,h=0;
+        if(moves.length()%2 !=0) {
+            return false;
+        }
         for(char m:moves.toCharArray()){
             switch(m){
                 case 'U':v++;break;
