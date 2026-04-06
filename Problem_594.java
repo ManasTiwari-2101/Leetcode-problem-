@@ -1,3 +1,4 @@
+// First Approach which i learned 
 class Solution {
     public int findLHS(int[] nums) {
         HashMap<Integer,Integer> map=new HashMap<>();
@@ -12,5 +13,23 @@ class Solution {
             }
         }
         return c;
+    }
+}
+// Optimal Approach is by using sliding windows O(nlogn)
+class Solution {
+    public int findLHS(int[] nums) {
+        Arrays.sort(nums);
+        int left = 0;
+        int maxLen = 0;
+        for (int right = 0; right < nums.length; right++) {
+            // shrink window if difference > 1
+            while (nums[right]-nums[left]>1) {
+                left++;
+            }
+            if (nums[right]-nums[left]== 1) {
+                maxLen = Math.max(maxLen, right-left+1);
+            }
+        }
+        return maxLen;
     }
 }
